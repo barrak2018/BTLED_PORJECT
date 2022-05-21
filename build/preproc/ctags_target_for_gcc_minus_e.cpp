@@ -21,7 +21,7 @@ void loop()
             }
 
         }
-        Serial.printl("codigo obtenido --------->   ");
+        Serial.println("codigo obtenido --------->   ");
         Serial.println(code);
 
     }
