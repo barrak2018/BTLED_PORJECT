@@ -12,19 +12,21 @@ void loop()
  if (Serial1.available())
     {
         char c;
-        while (Serial1.available()>0)
+        while ()
         {
             c=Serial1.read();
             if ((c!='\n')&&(c!='\r'))
             {
-                code.concat(c);
+                /* code */
             }
 
         }
+<<<<<<< HEAD
         Serial.println("codigo obtenido --------->   ");
         Serial.println(code);
+=======
+>>>>>>> parent of a2b9fcc (area de trabajo vscode)
 
     }
-
 
 }
