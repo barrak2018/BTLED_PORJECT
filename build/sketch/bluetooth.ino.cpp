@@ -18,17 +18,20 @@ void loop()
 	if (Serial1.available())
     {
         char c;
-        while ()
+        while (Serial1.available()>0)
         {
             c=Serial1.read();
             if ((c!='\n')&&(c!='\r'))
             {
-                /* code */
+                code.concat(c);
             }
             
         }
+        Serial.printl("codigo obtenido --------->   ");
+        Serial.println(code);
         
     }
+
     
 }
 
