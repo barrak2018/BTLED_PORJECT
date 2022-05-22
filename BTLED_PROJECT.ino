@@ -8,19 +8,9 @@ void setup()
 
 void loop()
 {
-	if (Serial1.available())
+	if (Serial1.available()>=6)
     {
-        char c;
-        while (Serial1.available()>0)
-        {
-            c=Serial1.read();
-            if ((c!='\n')&&(c!='\r'))
-            {
-                code.concat(c);
-            }
-            
-        }
-        Serial.println("codigo obtenido --------->   ");
+        code = Serial1.readString();
         Serial.println(code);
         
     }
