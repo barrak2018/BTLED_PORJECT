@@ -4,9 +4,9 @@ int greenLED = 3;
 int blueLED = 4;
 void setup()
 {
-	Serial.begin(9600);
-    Serial1.begin(9600);
-    Serial.println("System Online");
+	Serial.begin(9600);//comunicacion serial con el monitor de la pc
+    Serial1.begin(9600);// comunicacion con el modulo Bluetooth HC-05 
+    Serial.println("System Online");//linea de control
 }
 void loop()
 {
@@ -16,13 +16,20 @@ void loop()
         code ="";
         code=Serial1.readString();//se almacena toda la cadena en la variable code 
         
-        //-------------------------------------------------------------------------
+        //-------------------lineas de control del programa------------------------
+
         Serial.print("codigo de color ---------->  ");
         Serial.println(code);
-        //-------------------------------------------------------------------------
+
+        //--------------------se crea un array y se guardan los datos de code------
+        
         char code2 [code.length()+1];
         code.toCharArray(code2,code.length()+1);
-        
+
+        /*--------------------decodificacion del codigo Hexadecimal----------------
+                               declaracion de los valores de color                
+        */
+
         int red = hexToByte(code2[0],code2[1]);
         Serial.println(red);
         int green = hexToByte(code2[2],code2[3]);
@@ -30,6 +37,7 @@ void loop()
         int blue = hexToByte(code2[4],code2[5]);
         Serial.println(blue);
 
+        //-------------------validacion de datos y asignacion de valores de color-----------------------------------
         if (red < 0)
         {
             red = 0;
@@ -51,15 +59,13 @@ void loop()
             blue = 0;
             Serial.println("Error de Convercion");
         }
-        
-        
-        
-        
-        
+        else 
+        {
+
+        }
     }
-
 }
-
+/* charToDigit cnvierte un caracter en su valor decimal en base al codigo exadecimal*/
 int charToDigit (char c){
     if ((c >= '0')&&(c <= '9'))
     {
@@ -78,7 +84,7 @@ int charToDigit (char c){
         return -1;
     }
 }
-
+/* hexToByte convierte dos caracteres de un codigo hexadecimal en su valor de base 10*/
 int hexToByte (char a, char b){
     //Serial.println(a);
     int first = charToDigit(a);
