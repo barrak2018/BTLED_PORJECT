@@ -12,8 +12,5 @@ void loop()
     {
         code = Serial1.readString();
         Serial.println(code);
-        
     }
-
-    
 }
