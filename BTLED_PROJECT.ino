@@ -1,4 +1,7 @@
 String code = "";
+int redLED;
+int greenLED;
+int blueLED;
 void setup()
 {
 	Serial.begin(9600);
@@ -8,22 +11,11 @@ void setup()
 
 void loop()
 {
-	if (Serial1.available())
+	if (Serial1.available()>=6) //se espera hasta que existan datos que leer
     {
-        char c;
-        while (Serial1.available()>0)
-        {
-            c=Serial1.read();
-            if ((c!='\n')&&(c!='\r'))
-            {
-                code.concat(c);
-            }
-            
-        }
-        Serial.println("codigo obtenido --------->   ");
-        Serial.println(code);
-        
-    }
-
-    
+        code ="";
+        code=Serial1.readString();//se almacena toda la cadena en la variable code 
+        Serial.println(code);//linea de testeo
+    }    
 }
+
