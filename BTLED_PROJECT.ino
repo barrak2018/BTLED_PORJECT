@@ -10,7 +10,7 @@ void setup()
 }
 void loop()
 {
-	if (Serial1.available()>=2) //se espera hasta que existan datos que leer
+	if (Serial1.available()>=6) //se espera hasta que existan datos que leer
     {
         //-------------------------------------------------------------------------
         code ="";
@@ -22,8 +22,40 @@ void loop()
         //-------------------------------------------------------------------------
         char code2 [code.length()+1];
         code.toCharArray(code2,code.length()+1);
+        
         int red = hexToByte(code2[0],code2[1]);
         Serial.println(red);
+        int green = hexToByte(code2[2],code2[3]);
+        Serial.println(green);
+        int blue = hexToByte(code2[4],code2[5]);
+        Serial.println(blue);
+
+        if (red < 0)
+        {
+            red = 0;
+            green = 0;
+            blue = 0;
+            Serial.println("Error de Convercion");
+        }
+        else if (green < 0)
+        {
+            red = 0;
+            green = 0;
+            blue = 0;
+            Serial.println("Error de Convercion");
+        }
+        else if (blue < 0)
+        {
+            red = 0;
+            green = 0;
+            blue = 0;
+            Serial.println("Error de Convercion");
+        }
+        
+        
+        
+        
+        
     }
 
 }
