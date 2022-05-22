@@ -11,12 +11,22 @@ void setup()
 
 void loop()
 {
-	if (Serial1.available()>=6) //se espera hasta que existan datos que leer
+	if (Serial1.available()>=2) //se espera hasta que existan datos que leer
     {
+        //-------------------------------------------------------------------------
         code ="";
         code=Serial1.readString();//se almacena toda la cadena en la variable code 
-        Serial.println(code);//linea de testeo
-    }    
+        
+        //-------------------------------------------------------------------------
+        Serial.print("codigo de color ---------->  ");
+        Serial.println(code);
+        //-------------------------------------------------------------------------
+        char code2 [code.length()+1];
+        code.toCharArray(code2,code.length());
+        int red = hexToByte(code2[0],code2[1]);
+        Serial.println(red);
+    }
+
 }
 
 int charToDigit (char c){
@@ -26,18 +36,27 @@ int charToDigit (char c){
     } 
     else if ((c >= 'A')&&(c <= 'F'))
     {
-        return c - 'A';
+        return 10 + c - 'A';
     } 
     else if ((c >= 'a')&&(c <= 'f'))
     {
-        return c - 'a';
+        return 10 + c - 'a';
     } 
-    else
-    {
-        return -1;
-    }
+    // else
+    // {
+    //     return -1;
+    // }
 }
 
 int hexToByte (char a, char b){
+    //Serial.println(a);
+    int first = charToDigit(a);
+    //Serial.println(first);
 
+    //Serial.println(a);
+    int secon = charToDigit(b);
+    //Serial.println(secon);
+
+    
+    return first * 16+secon;
 }
