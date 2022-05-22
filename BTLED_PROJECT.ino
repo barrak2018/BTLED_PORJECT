@@ -22,7 +22,7 @@ void loop()
         Serial.println(code);
         //-------------------------------------------------------------------------
         char code2 [code.length()+1];
-        code.toCharArray(code2,code.length());
+        code.toCharArray(code2,code.length()+1);
         int red = hexToByte(code2[0],code2[1]);
         Serial.println(red);
     }
