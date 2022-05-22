@@ -1,14 +1,13 @@
 String code = "";
-int redLED;
-int greenLED;
-int blueLED;
+int redLED = 2;
+int greenLED = 3;
+int blueLED = 4;
 void setup()
 {
 	Serial.begin(9600);
     Serial1.begin(9600);
     Serial.println("System Online");
 }
-
 void loop()
 {
 	if (Serial1.available()>=2) //se espera hasta que existan datos que leer
@@ -42,10 +41,10 @@ int charToDigit (char c){
     {
         return 10 + c - 'a';
     } 
-    // else
-    // {
-    //     return -1;
-    // }
+    else
+    {
+        return -1;
+    }
 }
 
 int hexToByte (char a, char b){
@@ -57,6 +56,10 @@ int hexToByte (char a, char b){
     int secon = charToDigit(b);
     //Serial.println(secon);
 
+    if ((first < 0)||(secon < 0))
+    {
+        return -1;
+    }
     
     return first * 16+secon;
 }
