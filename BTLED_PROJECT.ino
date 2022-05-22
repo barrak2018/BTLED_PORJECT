@@ -1,4 +1,7 @@
 String code = "";
+int redLED;
+int greenLED;
+int blueLED;
 void setup()
 {
 	Serial.begin(9600);
@@ -10,20 +13,15 @@ void loop()
 {
 	if (Serial1.available())
     {
-        char c;
-        while (Serial1.available()>0)
-        {
-            c=Serial1.read();
-            if ((c!='\n')&&(c!='\r'))
-            {
-                code.concat(c);
-            }
-            
-        }
-        Serial.println("codigo obtenido --------->   ");
+        code ="";
+        code=Serial1.readString();
         Serial.println(code);
         
+
     }
+    
+
 
     
 }
+
