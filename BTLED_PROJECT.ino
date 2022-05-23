@@ -36,7 +36,7 @@ void loop()
         Serial.println(green);
         int blue = hexToByte(code2[4],code2[5]);
         Serial.println(blue);
-
+        delay(10);
         //-------------------validacion de datos y asignacion de valores de color-----------------------------------
         if (red < 0)
         {
@@ -61,6 +61,9 @@ void loop()
         }
         else 
         {
+            analogWrite (redLED, red);
+            analogWrite (greenLED, green);
+            analogWrite(blueLED, blue);
 
         }
     }
@@ -86,18 +89,11 @@ int charToDigit (char c){
 }
 /* hexToByte convierte dos caracteres de un codigo hexadecimal en su valor de base 10*/
 int hexToByte (char a, char b){
-    //Serial.println(a);
     int first = charToDigit(a);
-    //Serial.println(first);
-
-    //Serial.println(a);
     int secon = charToDigit(b);
-    //Serial.println(secon);
-
     if ((first < 0)||(secon < 0))
     {
         return -1;
     }
-    
     return first * 16+secon;
 }
